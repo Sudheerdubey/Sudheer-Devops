@@ -1,0 +1,24 @@
+Here user name & password both given in keyvault & created via cli in azure.
+
+Used that as reference in vm creation to pass id & password withouth mentioning anywhere in terraform module
+
+az group create --name Sudheer_keyvault --location centralindia
+az keyvault create --name sudheer-kv-vm-001 --resource-group Sudheer_keyvault --location centralindia
+az keyvault secret set --vault-name "sudheer-kv-vm-001" --name "frontend-admin" --value "FrontendAdmin@123"
+
+
+
+
+Follow these steps in the Azure Portal to grant the key vault permission manually:
+
+Open the Azure Portal.
+Go to the Key Vault named "sudheer-kv-vm-001".
+In the left menu, open "Access control (IAM)".
+Click "Add" → "Add role assignment".
+In the "Role" tab, select:
+"Key Vault Secrets Officer"
+In the "Members" tab, choose:
+"User, group, or service principal"
+Select your account (the same user you used with Azure CLI)
+Click "Review + assign".
+Click "Assign".
